@@ -1,116 +1,285 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Your Surprise 💚</title>
 
-<link rel="stylesheet" href="style.css">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Your Surprise 💚</title>
+
+    <link rel="stylesheet" href="style.css">
 
 <style>
 
-/* ================================
-   MAIN SURPRISE PAGE
-================================ */
+/* =========================
+   MAIN PAGE
+========================= */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(0,255,136,.12),
+            transparent 35%
+        ),
+        #030303;
+}
+
+
+/* =========================
+   BACKGROUND PARTICLES
+========================= */
+
+#themeParticles {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 0;
+}
+
+
+/* =========================
+   GLOWING BALLS
+========================= */
+
+#glowingBalls {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+
+    z-index: 0;
+}
+
+.glowing-ball {
+    position: absolute;
+
+    border-radius: 50%;
+
+    opacity: .35;
+
+    animation:
+        ballFloat linear infinite;
+
+    filter: blur(.5px);
+}
+
+@keyframes ballFloat {
+
+    0% {
+        transform:
+            translateY(110vh)
+            translateX(0);
+    }
+
+    50% {
+        transform:
+            translateY(40vh)
+            translateX(25px);
+    }
+
+    100% {
+        transform:
+            translateY(-15vh)
+            translateX(-15px);
+    }
+}
+
+
+/* =========================
+   OCCASION PARTICLES
+========================= */
+
+.particle {
+
+    position: absolute;
+
+    opacity: .65;
+
+    pointer-events: none;
+
+    animation:
+        floatDown linear infinite;
+}
+
+
+@keyframes floatDown {
+
+    0% {
+
+        transform:
+            translateY(-10vh)
+            translateX(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+
+    15% {
+        opacity: .65;
+    }
+
+
+    100% {
+
+        transform:
+            translateY(110vh)
+            translateX(25px)
+            rotate(180deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   PAGE CONTENT
+========================= */
 
 .surprise-page {
+
     min-height: 100vh;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     padding: 20px;
+
     position: relative;
     z-index: 1;
+
+    box-sizing: border-box;
 }
+
+
+/* =========================
+   SURPRISE CARD
+========================= */
 
 .surprise-card {
+
     width: 100%;
     max-width: 600px;
+
     padding: 45px 25px;
+
     text-align: center;
+
     border-radius: 30px;
-    background: rgba(255,255,255,.07);
-    border: 1px solid rgba(0,255,136,.25);
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid rgba(0,255,136,.25);
+
     box-shadow:
-        0 0 30px rgba(0,255,136,.12),
-        0 0 80px rgba(0,255,136,.05);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition:
-        border-color .6s ease,
-        box-shadow .6s ease,
-        background .6s ease;
+        0 0 30px rgba(0,255,136,.12);
+
+    backdrop-filter:
+        blur(8px);
 }
 
-/* ================================
+
+/* =========================
    GIFT SCREEN
-================================ */
+========================= */
 
 #giftScreen {
+
     min-height: 55vh;
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
     justify-content: center;
+
     text-align: center;
-    position: relative;
 }
 
+
 .surprise-gift {
+
     font-size: 120px;
+
     margin-bottom: 18px;
+
     cursor: pointer;
+
     user-select: none;
 
     animation:
-        giftFloat 2.5s ease-in-out infinite,
-        giftGlow 2s ease-in-out infinite;
+        giftFloat 2.5s ease-in-out infinite;
+
+    filter:
+        drop-shadow(
+            0 0 18px
+            rgba(0,255,136,.5)
+        );
 
     transition:
+
         transform .7s ease,
-        opacity .7s ease,
-        filter .4s ease;
+
+        opacity .7s ease;
 }
 
-.surprise-gift:hover {
-    transform: scale(1.08);
-}
 
 @keyframes giftFloat {
 
-    0%, 100% {
-        transform: translateY(0) rotate(-2deg);
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            rotate(-2deg);
     }
 
+
     50% {
-        transform: translateY(-16px) rotate(2deg);
+
+        transform:
+            translateY(-15px)
+            rotate(2deg);
     }
 }
 
-@keyframes giftGlow {
-
-    0%, 100% {
-        filter:
-            drop-shadow(0 0 10px currentColor)
-            drop-shadow(0 0 25px currentColor);
-    }
-
-    50% {
-        filter:
-            drop-shadow(0 0 18px currentColor)
-            drop-shadow(0 0 45px currentColor);
-    }
-}
 
 #giftScreen p {
+
     margin: 0;
+
     font-size: 16px;
+
     letter-spacing: 1px;
+
     opacity: .75;
-    animation: textPulse 2s ease-in-out infinite;
+
+    animation:
+        textPulse 2s ease-in-out infinite;
 }
+
 
 @keyframes textPulse {
 
-    0%, 100% {
+    0%,
+    100% {
         opacity: .5;
     }
 
@@ -119,29 +288,45 @@
     }
 }
 
-/* ================================
-   MESSAGE SCREEN
-================================ */
+
+/* =========================
+   SURPRISE MESSAGE
+========================= */
 
 #messageScreen {
-    animation: messageAppear 1.2s ease forwards;
+
+    animation:
+        messageAppear 1.2s ease forwards;
 }
+
 
 @keyframes messageAppear {
 
     from {
+
         opacity: 0;
-        transform: translateY(25px) scale(.98);
+
+        transform:
+            translateY(25px);
     }
 
+
     to {
+
         opacity: 1;
-        transform: translateY(0) scale(1);
+
+        transform:
+            translateY(0);
     }
 }
 
+
+/* TITLE */
+
 #surpriseTitle {
+
     font-size: 32px;
+
     margin-bottom: 15px;
 
     background:
@@ -153,330 +338,331 @@
         );
 
     -webkit-background-clip: text;
+
     -webkit-text-fill-color: transparent;
+
     background-clip: text;
-
-    animation: titleGlow 3s ease-in-out infinite;
 }
 
-@keyframes titleGlow {
 
-    0%, 100% {
-        filter: drop-shadow(0 0 5px rgba(255,255,255,.15));
-    }
-
-    50% {
-        filter: drop-shadow(0 0 16px rgba(255,255,255,.45));
-    }
-}
+/* RECIPIENT */
 
 #recipientName {
+
     color: #00ff88;
+
     margin-bottom: 15px;
 
     opacity: 0;
 
     animation:
-        recipientAppear 1s ease .4s forwards;
+
+        recipientAppear
+
+        1s ease
+
+        1.2s forwards;
 }
+
 
 @keyframes recipientAppear {
 
     from {
+
         opacity: 0;
-        transform: translateY(15px);
+
+        transform:
+            translateY(15px);
     }
 
+
     to {
+
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
 }
 
+
+/* DATE */
+
 #surpriseDate {
+
     color: #ccc;
+
     margin-bottom: 25px;
 
     opacity: 0;
 
     animation:
-        dateAppear 1s ease .7s forwards;
+
+        dateAppear
+
+        1s ease
+
+        1.5s forwards;
 }
+
 
 @keyframes dateAppear {
 
     from {
+
         opacity: 0;
-        transform: translateY(12px);
+
+        transform:
+            translateY(12px);
     }
 
+
     to {
+
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
 }
+
+
+/* MESSAGE */
 
 #surpriseMessage {
-    white-space: pre-line;
-    line-height: 1.9;
-    font-size: 18px;
-    text-align: left;
 
-    min-height: 30px;
-    padding: 5px;
+    white-space: pre-line;
+
+    line-height: 1.9;
+
+    font-size: 18px;
+
+    text-align: left;
 }
+
+
+/* FROM */
 
 .from {
+
     margin-top: 30px;
+
     color: #00ff88;
-
-    opacity: 0;
-
-    animation:
-        fromAppear 1s ease 1s forwards;
 }
 
-@keyframes fromAppear {
 
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ================================
-   LOADING / ERROR
-================================ */
+/* =========================
+   LOADING + ERROR
+========================= */
 
 .loading {
+
     text-align: center;
+
     padding: 40px 20px;
 }
 
+
 .error {
+
     color: #ff6b6b;
 }
 
-/* ================================
-   DEFAULT BACKGROUND
-================================ */
 
-body {
-    background:
-        radial-gradient(
-            circle at 50% 20%,
-            rgba(0,255,136,.12),
-            transparent 35%
-        ),
-        #030303;
-
-    transition:
-        background .8s ease;
-}
-
-/* ================================
-   THEME PARTICLES
-================================ */
-
-#themeParticles {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 0;
-}
-
-.particle {
-    position: absolute;
-    font-size: 22px;
-    opacity: .55;
-
-    animation:
-        floatDown 12s linear infinite;
-
-    filter:
-        drop-shadow(0 0 8px currentColor);
-}
-
-@keyframes floatDown {
-
-    from {
-        transform:
-            translateY(-10vh)
-            rotate(0deg);
-
-        opacity: 0;
-    }
-
-    20% {
-        opacity: .6;
-    }
-
-    to {
-        transform:
-            translateY(110vh)
-            rotate(360deg);
-
-        opacity: 0;
-    }
-}
-
-/* ================================
-   THEME AURA
-================================ */
-
-.surprise-card::before {
-    content: "";
-    position: absolute;
-
-    width: 180px;
-    height: 180px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(0,255,136,.08);
-
-    filter: blur(70px);
-
-    pointer-events: none;
-
-    opacity: .8;
-}
-
-/* ================================
+/* =========================
    MOBILE
-================================ */
+========================= */
 
 @media (max-width: 600px) {
 
-    .surprise-page {
-        padding: 12px;
-    }
-
     .surprise-card {
+
         padding: 35px 20px;
+
         border-radius: 25px;
     }
 
+
     .surprise-gift {
+
         font-size: 100px;
     }
 
+
     #surpriseTitle {
+
         font-size: 27px;
     }
 
+
     #surpriseMessage {
+
         font-size: 17px;
-        line-height: 1.85;
     }
 
+
+    .particle {
+
+        opacity: .5;
+    }
 }
 
-</style></head><body><div id="themeParticles"></div><div class="surprise-page"><div class="surprise-card" id="surpriseCard">
+</style>
 
-    <!-- LOADING -->
-
-    <div class="loading" id="loading">
-
-        🎁
-
-        <p>
-            Opening your surprise...
-        </p>
-
-    </div>
+</head>
 
 
-    <!-- SURPRISE CONTENT -->
-
-    <div id="surpriseContent" style="display:none;">
+<body>
 
 
-        <!-- GIFT -->
+<!-- BACKGROUND EFFECTS -->
 
-        <div id="giftScreen">
+<div id="themeParticles"></div>
 
-            <div
-                class="surprise-gift"
-                id="giftBox"
-            >
-                🎁
-            </div>
+<div id="glowingBalls"></div>
+
+
+
+<!-- MAIN PAGE -->
+
+<div class="surprise-page">
+
+    <div
+        class="surprise-card"
+        id="surpriseCard"
+    >
+
+
+        <!-- LOADING -->
+
+        <div
+            class="loading"
+            id="loading"
+        >
+
+            🎁
 
             <p>
-                Tap the gift to open your surprise ✨
+                Opening your surprise...
             </p>
 
         </div>
 
 
-        <!-- MESSAGE -->
+
+        <!-- SURPRISE CONTENT -->
 
         <div
-            id="messageScreen"
+            id="surpriseContent"
             style="display:none;"
         >
 
-            <h1 id="surpriseTitle">
-                A Special Surprise 💚
-            </h1>
 
-            <h2 id="recipientName">
-                Someone Special
+            <!-- GIFT -->
+
+            <div id="giftScreen">
+
+                <div
+                    class="surprise-gift"
+                    id="giftBox"
+                >
+                    🎁
+                </div>
+
+
+                <p>
+                    Tap the gift to open your surprise ✨
+                </p>
+
+            </div>
+
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="messageScreen"
+                style="display:none;"
+            >
+
+                <h1 id="surpriseTitle">
+                    A Special Surprise 💚
+                </h1>
+
+
+                <h2 id="recipientName">
+                    Someone Special
+                </h2>
+
+
+                <p id="surpriseDate"></p>
+
+
+                <div
+                    id="surpriseMessage"
+                ></div>
+
+
+                <p class="from">
+
+                    With love from
+
+                    <span id="senderName"></span>
+
+                    💚
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ERROR -->
+
+        <div
+            id="errorMessage"
+            style="display:none;"
+        >
+
+            <h2 class="error">
+                😔 Surprise not found
             </h2>
 
-            <p id="surpriseDate"></p>
 
-            <div id="surpriseMessage"></div>
-
-            <p class="from">
-                With love from
-                <span id="senderName"></span>
-                💚
+            <p>
+                This surprise link may be invalid or expired.
             </p>
 
         </div>
 
-    </div>
-
-
-    <!-- ERROR -->
-
-    <div
-        id="errorMessage"
-        style="display:none;"
-    >
-
-        <h2 class="error">
-            😔 Surprise not found
-        </h2>
-
-        <p>
-            This surprise link may be invalid or expired.
-        </p>
 
     </div>
 
 </div>
 
-</div><!-- SUPABASE --><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
 
-/* ================================
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+
+/* =========================
    SUPABASE
-================================ */
+========================= */
 
 const SUPABASE_URL =
     "https://ghlomcrgxkvequombpni.supabase.co";
 
+
 const SUPABASE_KEY =
     "sb_publishable_WNWXz8z0_sOyiQRvkKiQPQ_XYIMo0Mq";
+
 
 const supabaseClient =
     supabase.createClient(
@@ -485,9 +671,507 @@ const supabaseClient =
     );
 
 
-/* ================================
+
+/* =========================
+   CREATE PARTICLES
+========================= */
+
+function createParticles(
+    icons,
+    amount = 18
+) {
+
+    const particles =
+        document.getElementById(
+            "themeParticles"
+        );
+
+
+    particles.innerHTML = "";
+
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
+
+        const particle =
+            document.createElement("span");
+
+
+        particle.className =
+            "particle";
+
+
+        particle.textContent =
+            icons[
+                Math.floor(
+                    Math.random() *
+                    icons.length
+                )
+            ];
+
+
+        particle.style.left =
+            Math.random() * 100 + "%";
+
+
+        particle.style.fontSize =
+            (
+                10 +
+                Math.random() * 10
+            ) + "px";
+
+
+        particle.style.animationDuration =
+            (
+                10 +
+                Math.random() * 8
+            ) + "s";
+
+
+        particle.style.animationDelay =
+            (
+                Math.random() * -15
+            ) + "s";
+
+
+        particles.appendChild(
+            particle
+        );
+
+    }
+
+}
+
+
+
+/* =========================
+   CREATE GLOWING BALLS
+========================= */
+
+function createGlowingBalls(
+    color
+) {
+
+    const container =
+        document.getElementById(
+            "glowingBalls"
+        );
+
+
+    container.innerHTML = "";
+
+
+    for (
+        let i = 0;
+        i < 9;
+        i++
+    ) {
+
+        const ball =
+            document.createElement("div");
+
+
+        ball.className =
+            "glowing-ball";
+
+
+        const size =
+            6 +
+            Math.random() * 12;
+
+
+        ball.style.width =
+            size + "px";
+
+
+        ball.style.height =
+            size + "px";
+
+
+        ball.style.left =
+            Math.random() * 100 + "%";
+
+
+        ball.style.background =
+            color;
+
+
+        ball.style.boxShadow =
+            `0 0 10px ${color}`;
+
+
+        ball.style.animationDuration =
+            (
+                12 +
+                Math.random() * 10
+            ) + "s";
+
+
+        ball.style.animationDelay =
+            (
+                Math.random() * -15
+            ) + "s";
+
+
+        container.appendChild(
+            ball
+        );
+
+    }
+
+}
+
+
+
+/* =========================
+   APPLY THEME
+========================= */
+
+function applyTheme(
+    selectedTheme
+) {
+
+    const pageBody =
+        document.body;
+
+
+    const card =
+        document.getElementById(
+            "surpriseCard"
+        );
+
+
+    const title =
+        document.getElementById(
+            "surpriseTitle"
+        );
+
+
+    const recipient =
+        document.getElementById(
+            "recipientName"
+        );
+
+
+    const from =
+        document.querySelector(
+            ".from"
+        );
+
+
+    const gift =
+        document.getElementById(
+            "giftBox"
+        );
+
+
+
+    /* BLUE */
+
+    if (
+        selectedTheme === "blue"
+    ) {
+
+        pageBody.style.background =
+            "radial-gradient(circle at 50% 20%, rgba(0,150,255,.20), transparent 35%), #020817";
+
+
+        card.style.borderColor =
+            "rgba(0,150,255,.35)";
+
+
+        card.style.boxShadow =
+            "0 0 30px rgba(0,150,255,.18)";
+
+
+        recipient.style.color =
+            "#42a5f5";
+
+
+        from.style.color =
+            "#42a5f5";
+
+
+        title.style.backgroundImage =
+            "linear-gradient(90deg, #42a5f5, #00d9ff, #90caf9)";
+
+
+        gift.style.filter =
+            "drop-shadow(0 0 16px #42a5f5)";
+
+
+        createGlowingBalls(
+            "#42a5f5"
+        );
+
+    }
+
+
+
+    /* PINK */
+
+    else if (
+        selectedTheme === "pink"
+    ) {
+
+        pageBody.style.background =
+            "radial-gradient(circle at 50% 20%, rgba(255,20,147,.18), transparent 35%), #16030d";
+
+
+        card.style.borderColor =
+            "rgba(255,70,150,.35)";
+
+
+        card.style.boxShadow =
+            "0 0 30px rgba(255,70,150,.15)";
+
+
+        recipient.style.color =
+            "#ff5fa2";
+
+
+        from.style.color =
+            "#ff5fa2";
+
+
+        title.style.backgroundImage =
+            "linear-gradient(90deg, #ff5fa2, #ff8acb, #ff4081)";
+
+
+        gift.style.filter =
+            "drop-shadow(0 0 16px #ff5fa2)";
+
+
+        createGlowingBalls(
+            "#ff5fa2"
+        );
+
+    }
+
+
+
+    /* PURPLE */
+
+    else if (
+        selectedTheme === "purple"
+    ) {
+
+        pageBody.style.background =
+            "radial-gradient(circle at 50% 20%, rgba(160,60,255,.18), transparent 35%), #0d0316";
+
+
+        card.style.borderColor =
+            "rgba(180,80,255,.35)";
+
+
+        card.style.boxShadow =
+            "0 0 30px rgba(180,80,255,.15)";
+
+
+        recipient.style.color =
+            "#c084fc";
+
+
+        from.style.color =
+            "#c084fc";
+
+
+        title.style.backgroundImage =
+            "linear-gradient(90deg, #c084fc, #a855f7, #e879f9)";
+
+
+        gift.style.filter =
+            "drop-shadow(0 0 16px #c084fc)";
+
+
+        createGlowingBalls(
+            "#c084fc"
+        );
+
+    }
+
+
+
+    /* GREEN DEFAULT */
+
+    else {
+
+        pageBody.style.background =
+            "radial-gradient(circle at 50% 20%, rgba(0,255,136,.15), transparent 35%), #030303";
+
+
+        card.style.borderColor =
+            "rgba(0,255,136,.35)";
+
+
+        card.style.boxShadow =
+            "0 0 30px rgba(0,255,136,.12)";
+
+
+        recipient.style.color =
+            "#00ff88";
+
+
+        from.style.color =
+            "#00ff88";
+
+
+        title.style.backgroundImage =
+            "linear-gradient(90deg, #00ff88, #00d9ff, #9d5cff)";
+
+
+        gift.style.filter =
+            "drop-shadow(0 0 16px #00ff88)";
+
+
+        createGlowingBalls(
+            "#00ff88"
+        );
+
+    }
+
+}
+
+
+
+/* =========================
+   OCCASION ANIMATIONS
+========================= */
+
+function applyOccasionAnimation(
+    selectedOccasion
+) {
+
+    /* BIRTHDAY */
+
+    if (
+        selectedOccasion === "Birthday"
+    ) {
+
+        createParticles(
+            [
+                "🎉",
+                "🌟",
+                "🌺",
+                "🎂",
+                "✨"
+            ],
+            20
+        );
+
+    }
+
+
+
+    /* ANNIVERSARY */
+
+    else if (
+        selectedOccasion === "Anniversary"
+    ) {
+
+        createParticles(
+            [
+                "❤️",
+                "🌹",
+                "💍",
+                "✨",
+                "💛"
+            ],
+            18
+        );
+
+    }
+
+
+
+    /* LOVE */
+
+    else if (
+        selectedOccasion === "Love"
+    ) {
+
+        createParticles(
+            [
+                "💕",
+                "💗",
+                "🌸",
+                "💖",
+                "🌺"
+            ],
+            18
+        );
+
+    }
+
+
+
+    /* PROPOSAL */
+
+    else if (
+        selectedOccasion === "Proposal"
+    ) {
+
+        createParticles(
+            [
+                "💎",
+                "💍",
+                "✨",
+                "🌹",
+                "💖"
+            ],
+            16
+        );
+
+    }
+
+
+
+    /* FRIENDSHIP */
+
+    else if (
+        selectedOccasion === "Friendship"
+    ) {
+
+        createParticles(
+            [
+                "🤝",
+                "⭐",
+                "🌟",
+                "✨"
+            ],
+            16
+        );
+
+    }
+
+
+
+    /* CUSTOM */
+
+    else {
+
+        createParticles(
+            [
+                "✨",
+                "⭐",
+                "🌟",
+                "•"
+            ],
+            15
+        );
+
+    }
+
+}
+
+
+
+/* =========================
    LOAD SURPRISE
-================================ */
+========================= */
 
 async function loadSurprise() {
 
@@ -495,6 +1179,7 @@ async function loadSurprise() {
         new URLSearchParams(
             window.location.search
         );
+
 
     const slug =
         params.get("surprise");
@@ -505,40 +1190,61 @@ async function loadSurprise() {
         showError();
 
         return;
+
     }
 
 
-    const { data, error } =
+
+    const {
+        data,
+        error
+    } =
         await supabaseClient
+
             .from("surprises")
+
             .select("*")
-            .eq("slug", slug)
+
+            .eq(
+                "slug",
+                slug
+            )
+
             .single();
 
 
-    if (error || !data) {
+
+    if (
+        error ||
+        !data
+    ) {
 
         console.error(error);
 
         showError();
 
         return;
+
     }
 
 
-    /* SHOW SURPRISE */
+
+    /* HIDE LOADING */
 
     document.getElementById(
         "loading"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
     document.getElementById(
         "surpriseContent"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 
 
-    /* RECIPIENT */
+
+    /* NAMES */
 
     document.getElementById(
         "recipientName"
@@ -547,420 +1253,233 @@ async function loadSurprise() {
         "Someone Special";
 
 
-    /* SENDER */
-
     document.getElementById(
         "senderName"
     ).textContent =
         data.sender_name ||
         "Someone";
-window.surpriseMessageText =
-    data.message ||
-    "A special message for you 💚";
+
+
 
     /* DATE */
 
-    if (data.special_date) {
+    if (
+        data.special_date
+    ) {
 
         const date =
-            new Date(data.special_date);
+            new Date(
+                data.special_date
+            );
+
 
         document.getElementById(
             "surpriseDate"
         ).textContent =
+
             date.toLocaleDateString(
                 "en-GB",
                 {
                     day: "numeric",
+
                     month: "long",
+
                     year: "numeric"
                 }
             );
+
     }
 
 
-    /* ================================
-       OCCASION TITLE
-    ================================ */
 
-    if (data.occasion === "Birthday") {
+    /* OCCASION TITLE */
 
+    const surpriseTitle =
         document.getElementById(
             "surpriseTitle"
-        ).textContent =
+        );
+
+
+    if (
+        data.occasion === "Birthday"
+    ) {
+
+        surpriseTitle.textContent =
             "Happy Birthday 🎂";
 
     }
 
-    else if (data.occasion === "Anniversary") {
 
-        document.getElementById(
-            "surpriseTitle"
-        ).textContent =
+    else if (
+        data.occasion === "Anniversary"
+    ) {
+
+        surpriseTitle.textContent =
             "Happy Anniversary ❤️";
 
     }
 
-    else if (data.occasion === "Love") {
 
-        document.getElementById(
-            "surpriseTitle"
-        ).textContent =
+    else if (
+        data.occasion === "Love"
+    ) {
+
+        surpriseTitle.textContent =
             "A Special Surprise For You 💚";
 
     }
 
-    else if (data.occasion === "Friendship") {
 
-        document.getElementById(
-            "surpriseTitle"
-        ).textContent =
+    else if (
+        data.occasion === "Proposal"
+    ) {
+
+        surpriseTitle.textContent =
+            "A Question From The Heart 💍";
+
+    }
+
+
+    else if (
+        data.occasion === "Friendship"
+    ) {
+
+        surpriseTitle.textContent =
             "For A Special Friend 🤝";
 
     }
 
+
     else {
 
-        document.getElementById(
-            "surpriseTitle"
-        ).textContent =
+        surpriseTitle.textContent =
             "A Special Surprise ✨";
 
     }
 
 
-    /* ================================
-       THEME
-    ================================ */
 
-    applyTheme(data.theme);
+    /* APPLY THEME */
 
-}
+    applyTheme(
+        data.theme
+    );
 
 
-/* ================================
-   APPLY THEME
-================================ */
 
-function applyTheme(themeName) {
+    /* APPLY OCCASION ANIMATION */
 
-    const pageBody =
-        document.body;
+    applyOccasionAnimation(
+        data.occasion
+    );
 
-    const card =
+
+
+    /* MESSAGE TYPING */
+
+    const messageElement =
         document.getElementById(
-            "surpriseCard"
-        );
-
-    const title =
-        document.getElementById(
-            "surpriseTitle"
-        );
-
-    const recipient =
-        document.getElementById(
-            "recipientName"
-        );
-
-    const from =
-        document.querySelector(
-            ".from"
-        );
-
-    const gift =
-        document.getElementById(
-            "giftBox"
+            "surpriseMessage"
         );
 
 
-    /* BLUE */
-
-    if (themeName === "blue") {
-
-        pageBody.style.background =
-            "radial-gradient(circle at 50% 20%, rgba(0,150,255,.24), transparent 35%), #020817";
-
-        card.style.borderColor =
-            "rgba(0,150,255,.45)";
-
-        card.style.boxShadow =
-            "0 0 35px rgba(0,150,255,.22), 0 0 90px rgba(0,150,255,.08)";
-
-        recipient.style.color =
-            "#42a5f5";
-
-        from.style.color =
-            "#42a5f5";
-
-        title.style.backgroundImage =
-            "linear-gradient(90deg, #42a5f5, #00d9ff, #90caf9)";
-
-        gift.style.filter =
-            "drop-shadow(0 0 15px #42a5f5) drop-shadow(0 0 40px #00d9ff)";
-
-        createParticles("❄️");
-    }
+    const messageText =
+        data.message ||
+        "A special message for you 💚";
 
 
-    /* PINK */
-
-    else if (themeName === "pink") {
-
-        pageBody.style.background =
-            "radial-gradient(circle at 50% 20%, rgba(255,20,147,.24), transparent 35%), #16030d";
-
-        card.style.borderColor =
-            "rgba(255,70,150,.45)";
-
-        card.style.boxShadow =
-            "0 0 35px rgba(255,70,150,.22), 0 0 90px rgba(255,70,150,.08)";
-
-        recipient.style.color =
-            "#ff5fa2";
-
-        from.style.color =
-            "#ff5fa2";
-
-        title.style.backgroundImage =
-            "linear-gradient(90deg, #ff5fa2, #ff8acb, #ff4081)";
-
-        gift.style.filter =
-            "drop-shadow(0 0 15px #ff5fa2) drop-shadow(0 0 40px #ff4081)";
-
-        createParticles("💗");
-    }
+    messageElement.textContent =
+        "";
 
 
-    /* PURPLE */
-
-    else if (themeName === "purple") {
-
-        pageBody.style.background =
-            "radial-gradient(circle at 50% 20%, rgba(160,60,255,.24), transparent 35%), #0d0316";
-
-        card.style.borderColor =
-            "rgba(180,80,255,.45)";
-
-        card.style.boxShadow =
-            "0 0 35px rgba(180,80,255,.22), 0 0 90px rgba(180,80,255,.08)";
-
-        recipient.style.color =
-            "#c084fc";
-
-        from.style.color =
-            "#c084fc";
-
-        title.style.backgroundImage =
-            "linear-gradient(90deg, #c084fc, #a855f7, #e879f9)";
-
-        gift.style.filter =
-            "drop-shadow(0 0 15px #c084fc) drop-shadow(0 0 40px #a855f7)";
-
-        createParticles("✨");
-    }
+    let messageIndex =
+        0;
 
 
-    /* GREEN */
+    function typeSurpriseMessage() {
 
-    else {
+        if (
+            messageIndex <
+            messageText.length
+        ) {
 
-        pageBody.style.background =
-            "radial-gradient(circle at 50% 20%, rgba(0,255,136,.18), transparent 35%), #030303";
-
-        card.style.borderColor =
-            "rgba(0,255,136,.45)";
-
-        card.style.boxShadow =
-            "0 0 35px rgba(0,255,136,.22), 0 0 90px rgba(0,255,136,.08)";
-
-        recipient.style.color =
-            "#00ff88";
-
-        from.style.color =
-            "#00ff88";
-
-        title.style.backgroundImage =
-            "linear-gradient(90deg, #00ff88, #00d9ff, #9d5cff)";
-
-        gift.style.filter =
-            "drop-shadow(0 0 15px #00ff88) drop-shadow(0 0 40px #00d9ff)";
-
-        createParticles("💚");
-    }
-
-}
+            messageElement.textContent +=
+                messageText.charAt(
+                    messageIndex
+                );
 
 
-/* ================================
-   PARTICLES
-================================ */
-
-function createParticles(icon) {
-
-    const particles =
-        document.getElementById(
-            "themeParticles"
-        );
-
-    particles.innerHTML = "";
+            messageIndex++;
 
 
-    for (let i = 0; i < 24; i++) {
-
-        const p =
-            document.createElement(
-                "span"
+            setTimeout(
+                typeSurpriseMessage,
+                55
             );
 
-        p.className =
-            "particle";
+        }
 
-        p.textContent =
-            icon;
-
-        p.style.left =
-            Math.random() * 100 + "%";
-
-        p.style.fontSize =
-            (14 + Math.random() * 18) + "px";
-
-        p.style.animationDelay =
-            Math.random() * 12 + "s";
-
-        p.style.animationDuration =
-            (8 + Math.random() * 7) + "s";
-
-        particles.appendChild(p);
     }
+
+
+    /*
+    Message starts after
+    the gift is opened
+    */
+
+    window.startSurpriseMessage =
+        typeSurpriseMessage;
 
 }
 
 
-/* ================================
+
+/* =========================
    ERROR
-================================ */
+========================= */
 
 function showError() {
 
     document.getElementById(
         "loading"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
     document.getElementById(
         "errorMessage"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 
 }
 
 
-/* START */
+
+/* =========================
+   START
+========================= */
 
 loadSurprise();
 
-</script><!-- ================================
-     GIFT OPENING
-================================ --><script>
+
+</script>
+
+
+
+<!-- GIFT OPENING -->
+
+<script>
 
 const giftBox =
     document.getElementById(
         "giftBox"
     );
 
+
 const giftScreen =
     document.getElementById(
         "giftScreen"
     );
 
+
 const messageScreen =
-    document.getElementById(
-        "messageScreen"
-    );
-
-
-giftBox.addEventListener(
-    "click",
-    () => {
-
-        /* Gift animation */
-
-        giftBox.style.transform =
-            "scale(1.6) rotate(15deg)";
-
-        giftBox.style.opacity =
-            "0";
-
-
-        /* Open message */
-
-        setTimeout(() => {
-
-            giftScreen.style.display =
-                "none";
-
-            messageScreen.style.display =
-                "block";
-
-
-            /* ================================
-               TYPE MESSAGE AFTER OPENING
-            ================================ */
-
-            const messageElement =
-                document.getElementById(
-                    "surpriseMessage"
-                );
-
-
-            const messageText =
-                window.surpriseMessageText ||
-                "A special message for you 💚";
-
-
-            messageElement.textContent =
-                "";
-
-
-            let messageIndex = 0;
-
-
-            function typeSurpriseMessage() {
-
-                if (
-                    messageIndex <
-                    messageText.length
-                ) {
-
-                    messageElement.textContent +=
-                        messageText.charAt(
-                            messageIndex
-                        );
-
-                    messageIndex++;
-
-
-                    setTimeout(
-                        typeSurpriseMessage,
-                        55
-                    );
-                }
-            }
-
-
-            setTimeout(
-                typeSurpriseMessage,
-                500
-            );
-
-
-        }, 700);
-
-    }
-);
-
-</script><!-- ================================
-     DEVELOPER CREDIT
-================================ --><footer class="developer-credit">
-    DEVELOPED BY FAHIM
-</footer></body>
-    </html>
