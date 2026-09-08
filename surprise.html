@@ -1471,15 +1471,70 @@ loadSurprise();
 <script>
 
 const giftBox =
-    document.getElementById(
-        "giftBox"
-    );
-
+    document.getElementById("giftBox");
 
 const giftScreen =
-    document.getElementById(
-        "giftScreen"
-    );
-
+    document.getElementById("giftScreen");
 
 const messageScreen =
+    document.getElementById("messageScreen");
+
+
+giftBox.addEventListener("click", () => {
+
+    /* Stop floating animation */
+
+    giftBox.style.animation =
+        "none";
+
+
+    /* Opening animation */
+
+    giftBox.style.transform =
+        "scale(1.5) rotate(15deg)";
+
+
+    giftBox.style.opacity =
+        "0";
+
+
+    /* Show the message */
+
+    setTimeout(() => {
+
+        giftScreen.style.display =
+            "none";
+
+
+        messageScreen.style.display =
+            "block";
+
+
+        /* Start typing the message */
+
+        if (
+            window.startSurpriseMessage
+        ) {
+
+            setTimeout(() => {
+
+                window.startSurpriseMessage();
+
+            }, 700);
+
+        }
+
+    }, 700);
+
+});
+
+</script>
+
+
+<footer class="developer-credit">
+    DEVELOPED BY FAHIM
+</footer>
+
+</body>
+
+    </html>
