@@ -670,20 +670,48 @@ body {
 /* CLOSE BUTTON */
 
 .close-report {
-    position: absolute;
+    position: absolute !important;
 
-    top: 12px;
-    right: 14px;
+    top: 18px !important;
+    right: 18px !important;
 
-    border: none;
+    width: 38px !important;
+    height: 38px !important;
 
-    background: transparent;
+    margin: 0 !important;
+    padding: 0 !important;
 
-    color: #aaa;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 
-    font-size: 22px;
+    border: none !important;
+    border-radius: 50% !important;
 
-    cursor: pointer;
+    background: rgba(255, 255, 255, 0.08) !important;
+
+    color: #aaa !important;
+
+    font-size: 22px !important;
+    line-height: 1 !important;
+
+    cursor: pointer !important;
+
+    box-shadow: none !important;
+
+    transform: none !important;
+
+    transition: background 0.2s ease,
+                color 0.2s ease !important;
+}
+
+
+.close-report:hover {
+    background: rgba(255, 80, 80, 0.15) !important;
+
+    color: #ff8a8a !important;
+
+    transform: none !important;
 }
 
 
