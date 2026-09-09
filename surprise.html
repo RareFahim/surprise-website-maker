@@ -1802,12 +1802,14 @@ giftBox.addEventListener("click", () => {
 </script>
 
 
+
+    
 <!-- REPORT BUTTON -->
 
 <button id="reportBtn" class="report-btn">
     🚩 Report this surprise
 </button>
-
+<div id="reportModal" class="report-modal">
 
 <!-- REPORT POPUP -->
 
@@ -1876,10 +1878,175 @@ giftBox.addEventListener("click", () => {
 </div>
 
 
+<!-- REPORT SYSTEM JAVASCRIPT -->
+
+<script>
+
+/* =========================
+   REPORT SYSTEM
+========================= */
+
+const reportBtn =
+    document.getElementById("reportBtn");
+
+const reportModal =
+    document.getElementById("reportModal");
+
+const closeReportBtn =
+    document.getElementById("closeReportBtn");
+
+const submitReportBtn =
+    document.getElementById("submitReportBtn");
+
+const reportReason =
+    document.getElementById("reportReason");
+
+const reportDetails =
+    document.getElementById("reportDetails");
+
+const reportStatus =
+    document.getElementById("reportStatus");
+
+
+/* OPEN REPORT POPUP */
+
+reportBtn.addEventListener("click", () => {
+
+    reportModal.style.display = "flex";
+
+});
+
+
+/* CLOSE REPORT POPUP */
+
+closeReportBtn.addEventListener("click", () => {
+
+    reportModal.style.display = "none";
+
+});
+
+
+/* CLOSE WHEN CLICKING OUTSIDE */
+
+reportModal.addEventListener("click", (event) => {
+
+    if (event.target === reportModal) {
+
+        reportModal.style.display = "none";
+
+    }
+
+});
+
+
+/* SUBMIT REPORT */
+
+submitReportBtn.addEventListener(
+    "click",
+    async () => {
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const slug =
+            params.get("surprise");
+
+
+        if (!slug) {
+
+            reportStatus.textContent =
+                "❌ Unable to identify this surprise.";
+
+            return;
+
+        }
+
+
+        if (!reportReason.value) {
+
+            reportStatus.textContent =
+                "⚠️ Please select a reason.";
+
+            return;
+
+        }
+
+
+        submitReportBtn.disabled = true;
+
+        submitReportBtn.textContent =
+            "Submitting...";
+
+
+        const { error } =
+            await supabaseClient
+                .from("reports")
+                .insert([
+                    {
+                        surprise_slug: slug,
+
+                        reason:
+                            reportReason.value,
+
+                        details:
+                            reportDetails.value.trim()
+                    }
+                ]);
+
+
+        if (error) {
+
+            console.error(error);
+
+            reportStatus.textContent =
+                "❌ Could not submit the report. Please try again.";
+
+            submitReportBtn.disabled = false;
+
+            submitReportBtn.textContent =
+                "Submit Report";
+
+            return;
+
+        }
+
+
+        reportStatus.textContent =
+            "✅ Report submitted successfully. Thank you for helping keep this website safe.";
+
+        reportReason.value = "";
+
+        reportDetails.value = "";
+
+        submitReportBtn.textContent =
+            "Report Submitted";
+
+
+        setTimeout(() => {
+
+            reportModal.style.display = "none";
+
+            reportStatus.textContent = "";
+
+            submitReportBtn.disabled = false;
+
+            submitReportBtn.textContent =
+                "Submit Report";
+
+        }, 3000);
+
+    }
+);
+
+</script>
+
+
 <footer class="developer-credit">
     DEVELOPED BY FAHIM
 </footer>
 
 </body>
 
-    </html>
+</html>
