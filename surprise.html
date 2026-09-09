@@ -1455,7 +1455,38 @@ async function loadSurprise() {
 
     }
 
+/* =========================
+   CHECK IF SURPRISE IS DISABLED
+========================= */
 
+if (data.status === "disabled") {
+
+    document.getElementById(
+        "loading"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "errorMessage"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "errorMessage"
+    ).innerHTML = `
+        <h2 class="error">
+            🚫 This surprise is unavailable
+        </h2>
+
+        <p>
+            This surprise has been removed or disabled.
+        </p>
+    `;
+
+
+    return;
+
+    }
 
     /* HIDE LOADING */
 
