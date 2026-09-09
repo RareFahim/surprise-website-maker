@@ -1531,6 +1531,80 @@ giftBox.addEventListener("click", () => {
 </script>
 
 
+<!-- REPORT BUTTON -->
+
+<button id="reportBtn" class="report-btn">
+    🚩 Report this surprise
+</button>
+
+
+<!-- REPORT POPUP -->
+
+<div id="reportModal" class="report-modal">
+
+    <div class="report-box">
+
+        <button id="closeReportBtn" class="close-report">
+            ✕
+        </button>
+
+        <h2>🚩 Report this surprise</h2>
+
+        <p>
+            If this surprise contains harassment, threats,
+            private content, or inappropriate material,
+            please report it.
+        </p>
+
+
+        <label>Reason</label>
+
+        <select id="reportReason">
+
+            <option value="">Select a reason</option>
+
+            <option value="Harassment">
+                Harassment or bullying
+            </option>
+
+            <option value="Threat">
+                Threat or intimidation
+            </option>
+
+            <option value="Private Content">
+                Private or personal content
+            </option>
+
+            <option value="Inappropriate Content">
+                Inappropriate content
+            </option>
+
+            <option value="Other">
+                Other
+            </option>
+
+        </select>
+
+
+        <label>Additional details (optional)</label>
+
+        <textarea
+            id="reportDetails"
+            placeholder="Tell us more about the problem..."
+        ></textarea>
+
+
+        <button id="submitReportBtn" class="submit-report-btn">
+            Submit Report
+        </button>
+
+        <p id="reportStatus"></p>
+
+    </div>
+
+</div>
+
+
 <footer class="developer-credit">
     DEVELOPED BY FAHIM
 </footer>
