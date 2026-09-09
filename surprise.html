@@ -1954,19 +1954,19 @@ submitReportBtn.addEventListener(
 
         if (error) {
 
-            console.error(error);
+    console.error(error);
 
-            reportStatus.textContent =
-                "❌ Could not submit the report. Please try again.";
+    reportStatus.textContent =
+        "❌ Error: " + error.message;
 
-            submitReportBtn.disabled = false;
+    submitReportBtn.disabled = false;
 
-            submitReportBtn.textContent =
-                "Submit Report";
+    submitReportBtn.textContent =
+        "Submit Report";
 
-            return;
+    return;
 
-        }
+    }
 
 
         reportStatus.textContent =
